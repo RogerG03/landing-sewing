@@ -1,0 +1,45 @@
+---
+const { type='dress', detail=false } = Astro.props;
+---
+<svg viewBox="0 0 500 580" xmlns="http://www.w3.org/2000/svg" fill="none" role="img" aria-label={detail ? 'Detalle ilustrativo de la confección' : 'Muestra ilustrada de costura'}>
+  <defs><pattern id={`weave-${type}-${detail}`} width="5" height="5" patternUnits="userSpaceOnUse"><path d="M0 0h5M0 0v5" stroke="#453b49" stroke-opacity=".055" stroke-width=".6"/></pattern></defs>
+  <path d="M60 474Q250 440 440 474" stroke="#453b49" stroke-opacity=".12"/>
+  <g transform={detail ? 'translate(-95 -60) scale(1.4)' : ''}>
+    {type==='dress' && <g>
+      <path d="M250 65V91M250 65C250 49 272 50 270 64C270 74 253 77 250 83M250 92L158 141Q150 149 166 149H334Q350 149 342 141Z" stroke="#756770" stroke-width="3"/>
+      <path d="M192 127L173 161L191 224L153 334L119 466Q250 514 381 466L347 334L309 224L327 161L308 127L279 174H221Z" fill="#fff8e5" stroke="#65576c" stroke-width="2"/>
+      <path d="M194 128L221 174M307 128L279 174" stroke="#d5c2a7" stroke-width="9"/>
+      <path d="M191 224Q250 236 309 224M183 245Q250 255 317 245" stroke="#d9bea5" stroke-width="2"/>
+      <path d="M208 248L171 477M234 253L222 489M268 253L280 489M293 248L331 477" stroke="#dccbb9" stroke-width="2"/>
+      <path d="M128 450Q250 493 372 450" stroke="#d0b9a1" stroke-dasharray="4 4" stroke-width="2"/>
+      <path d="M192 127L173 161L191 224L153 334L119 466Q250 514 381 466L347 334L309 224L327 161L308 127L279 174H221Z" fill={`url(#weave-${type}-${detail})`}/>
+      <path d="M182 137q-31-25-23 0q10 16 26 5q-8 30 10 14M316 137q31-25 23 0q-10 16-26 5q8 30-10 14" stroke="#9c6b80" stroke-width="3"/>
+      <path d="M233 208q17-33 34 0" stroke="#91ae78" stroke-width="2"/><circle cx="250" cy="190" r="5" fill="#f2a6bd"/>
+    </g>}
+    {type==='hoop' && <g>
+      <circle cx="250" cy="295" r="167" fill="#c49a72" stroke="#65576c" stroke-width="2"/><circle cx="250" cy="295" r="154" fill="#fff9ec" stroke="#65576c" stroke-width="2"/><circle cx="250" cy="295" r="154" fill={`url(#weave-${type}-${detail})`}/><rect x="232" y="114" width="36" height="27" rx="3" fill="#c49a72" stroke="#65576c" stroke-width="2"/><path d="M218 124H281" stroke="#65576c" stroke-width="4"/>
+      <path d="M250 406Q232 303 252 216M249 365Q188 322 179 268M250 347Q318 330 324 264" stroke="#78946a" stroke-width="4" stroke-dasharray="3 3"/>
+      {[[250,211,'#f2a6bd'],[179,263,'#fff28a'],[324,263,'#a5d9e8'],[219,309,'#f49be4']].map(([x,y,c])=><g transform={`translate(${x} ${y})`}>{Array.from({length:7},(_,i)=><ellipse cy="-17" rx="9" ry="17" fill={c} stroke="#806f77" stroke-width=".8" transform={`rotate(${i*360/7})`}/>)}<circle r="8" fill="#d9ac58"/></g>)}
+      <path d="M247 382C189 368 188 342 217 353Z M263 337C294 293 320 305 299 327Z M245 274C209 255 203 231 225 239Z" fill="#a6e99a" stroke="#78946a" stroke-width="1.5"/>
+      <path d="M357 388C443 402 450 464 391 479" stroke="#f2a6bd" stroke-width="2"/><path d="M386 455l12 47" stroke="#65576c" stroke-width="2"/>
+    </g>}
+    {type==='blouse' && <g>
+      <path d="M250 73v26M250 73c-3-25 32-17 18 0l-18 13M250 99L163 150H337Z" stroke="#756770" stroke-width="3"/>
+      <path d="M210 139L161 162Q118 166 93 225L121 281L168 259L160 445Q250 472 340 445L332 259L379 281L407 225Q382 166 339 162L290 139Z" fill="#fff8e9" stroke="#65576c" stroke-width="2"/>
+      <path d="M210 139Q227 177 250 180Q273 177 290 139L311 161Q292 206 250 180Q208 206 189 161Z" fill="#f2a6bd" stroke="#65576c" stroke-width="1.5"/>
+      <path d="M250 180V453M160 189Q147 226 168 259M340 189Q353 226 332 259M111 259L130 274M369 274L389 259" stroke="#c8b2a9" stroke-width="2"/>
+      {[215,258,301,344,387,429].map(y=><circle cx="262" cy={y} r="4" fill="#d7b5f0" stroke="#65576c"/>)}
+      <path d="M210 139L161 162Q118 166 93 225L121 281L168 259L160 445Q250 472 340 445L332 259L379 281L407 225Q382 166 339 162L290 139Z" fill={`url(#weave-${type}-${detail})`}/>
+      <path d="M173 433Q250 454 327 433" stroke="#c8b2a9" stroke-dasharray="4 4"/>
+    </g>}
+    {type==='skirt' && <g>
+      <path d="M250 81v25M250 81c-3-25 32-17 18 0l-18 13M250 106L173 150H327Z" stroke="#756770" stroke-width="3"/>
+      <path d="M177 148H323L377 455Q250 486 123 455Z" fill="#88b2c9" stroke="#65576c" stroke-width="2"/>
+      <path d="M177 148H323L328 176H172Z" fill="#739eb7" stroke="#65576c" stroke-width="1.5"/>
+      <path d="M201 176Q209 230 169 243M299 176Q291 230 331 243M250 177V468M137 441Q250 468 363 441" stroke="#fff3bd" stroke-width="2" stroke-dasharray="4 4"/>
+      <path d="M177 148H323L377 455Q250 486 123 455Z" fill={`url(#weave-${type}-${detail})`}/>
+      <circle cx="255" cy="161" r="5" fill="#fff28a" stroke="#65576c"/><path d="M208 148V180M295 148V180" stroke="#65576c" stroke-width="4"/>
+      <g transform="rotate(-12 350 375)"><rect x="321" y="286" width="26" height="190" rx="3" fill="#fff28a" stroke="#65576c"/>{Array.from({length:18},(_,i)=><path d={`M321 ${297+i*10}h${i%2?8:15}`} stroke="#65576c"/>)}</g>
+    </g>}
+  </g>
+</svg>

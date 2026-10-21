@@ -1,0 +1,102 @@
+---
+import SewingJourney from '../components/SewingJourney';
+import SampleArt from '../components/SampleArt.astro';
+import { projects, whatsappNumber, whatsappMessage } from '../data/projects';
+import '../styles/global.css';
+const whatsappUrl = /^\d{8,15}$/.test(whatsappNumber) ? `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}` : null;
+---
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Entre Hilos · Costura con cariño</title>
+  <meta name="description" content="Vestidos a medida, bordados y arreglos. Un taller de costura donde tus ideas toman forma, puntada a puntada."/>
+  <meta name="theme-color" content="#fbf8ef"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Italiana&display=swap" rel="stylesheet"/>
+</head>
+<body>
+  <a href="#contenido" class="skip-link">Saltar al contenido</a>
+  <header class="site-header wrap">
+    <a href="#inicio" class="brand" aria-label="Entre Hilos, inicio"><svg viewBox="0 0 46 46" aria-hidden="true"><path d="M8 32C2 18 32 4 30 19S7 49 18 34S38 4 40 12S26 44 35 35" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M5 39L40 6" stroke="currentColor" stroke-width="1.5"/></svg><span>entre hilos<small>COSTURA CON CARIÑO</small></span></a>
+    <nav aria-label="Navegación principal"><a href="#taller">El taller</a><a href="#creaciones">Creaciones</a><a href="#contacto" class="nav-cta">Hablemos <span aria-hidden="true">↗</span></a></nav>
+  </header>
+  <main id="contenido">
+    <section class="journey" id="inicio" aria-label="De una idea a la última puntada">
+      <div class="story-sticky"><div class="scene-wrap"><SewingJourney client:load /></div></div>
+      <div class="hero wrap">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="tiny-flower" aria-hidden="true">✳</span> UN PEQUEÑO TALLER. MUCHAS POSIBILIDADES.</p>
+          <h1>Tu idea.<br/>Mis manos.<br/><em>Algo único.</em></h1>
+          <p class="hero-description">Vestidos a medida, bordados y prendas que vuelven a enamorarte. Cada puntada, hecha con cariño.</p>
+          <a href="#creaciones" class="button button-dark">Descubre lo que hacemos <span aria-hidden="true">↗</span></a>
+          <a href="#taller" class="scroll-cue"><span aria-hidden="true">↓</span> Sigue el hilo</a>
+        </div>
+        <span class="hero-side-note">Ideas que se convierten<br/>en tus prendas favoritas.</span>
+      </div>
+      <div class="craft-chapter wrap" id="taller"><div class="chapter-copy"><p class="eyebrow">01 / EL PRINCIPIO DE ALGO BONITO</p><h2>Todo empieza <br/>con <em>un hilo.</em></h2><p>Una tela que te gusta. Un dibujo en una servilleta. Ese vestido que llevas tiempo imaginando. Escuchamos tu idea y le damos forma contigo.</p><span class="chapter-tag"><i style="background:var(--green)"></i> A tu medida, desde el primer trazo</span></div></div>
+      <div class="craft-chapter wrap"><div class="chapter-copy"><p class="eyebrow">02 / LOS DETALLES LO CAMBIAN TODO</p><h2>Lo especial está <br/>en <em>lo pequeño.</em></h2><p>Un cierre que encaja. Un bordado que cuenta algo. Un acabado que se siente bien. Cuidamos esos detalles que hacen tuya una prenda.</p><span class="chapter-tag"><i style="background:var(--blush)"></i> Con tiempo, oficio y mucho cariño</span></div></div>
+    </section>
+    <section class="services wrap" aria-label="Lo que hacemos">
+      <div class="service-intro"><span class="eyebrow">HAY MUCHAS FORMAS<br/>DE HACERLO TUYO.</span><div class="palette-dots" aria-label="Paleta pastel: amarillo, verde, celeste, lila y rosas">{['#fff28a','#a6e99a','#a5d9e8','#d7b5f0','#f49be4','#f2a6bd'].map(c=><i style={`background:${c}`}></i>)}</div></div>
+      <div class="service"><span>01</span><h3>Hecho para ti</h3><p>Vestidos y prendas a medida, desde la idea hasta la última prueba.</p></div>
+      <div class="service"><span>02</span><h3>Un toque de hilo</h3><p>Bordados que ponen flores, color y personalidad en lo cotidiano.</p></div>
+      <div class="service"><span>03</span><h3>Otra oportunidad</h3><p>Arreglos y ajustes para seguir disfrutando tus prendas favoritas.</p></div>
+    </section>
+    <section class="projects-section" id="creaciones" aria-labelledby="projects-title">
+      <div class="wrap projects-heading"><div><p class="eyebrow">UNAS IDEAS PARA INSPIRARTE</p><h2 id="projects-title">Puntadas con <em>historia.</em></h2></div><p>Hay mucho que podemos hacer.<br/>Abre una pieza y mira más de cerca.</p></div>
+      <div class="wrap gallery-toolbar"><div class="filters" role="group" aria-label="Filtrar creaciones">{['Todas','A medida','Bordado','Arreglos'].map((f,i)=><button data-filter={f} aria-pressed={i===0}>{f}</button>)}</div><div class="gallery-controls"><button id="previous-project" aria-label="Ver creaciones anteriores">←</button><button id="next-project" aria-label="Ver más creaciones">→</button></div></div>
+      <div class="project-track" id="project-track" role="region" aria-label="Carrusel de creaciones" tabindex="0">
+        {projects.map((p,i)=><article class="project-card" data-category={p.category}><button class="project-open" data-project={p.id} aria-label={`Ver ${p.title}`}><div class="project-art" style={`background:${p.color}`}><span class="sample-label">MUESTRA ILUSTRATIVA / 0{i+1}</span>{p.images.length ? <img src={p.images[0]} alt={p.title} loading="lazy" width="500" height="580"/> : <SampleArt type={p.type}/>}<span class="project-plus" aria-hidden="true">↗</span></div><div class="project-meta"><div><p>{p.label}</p><h3>{p.title}</h3></div><span aria-hidden="true">0{i+1}</span></div></button></article>)}
+      </div>
+      <div class="wrap gallery-foot"><p>Desliza para descubrir <span aria-hidden="true">⟶</span></p><span>Ideas ilustradas. Pronto, historias del taller.</span></div>
+    </section>
+    <section class="manifesto wrap" aria-labelledby="manifesto-title">
+      <div class="fabric-note"><span class="note-pin" aria-hidden="true"></span><p>Hay prendas<br/>que te quedan bien.<br/><em>Y otras que<br/>se sienten tuyas.</em></p><svg viewBox="0 0 140 45" aria-hidden="true"><path d="M8 20C24 6 37 40 50 20S75 8 89 23S114 33 132 14" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></div>
+      <div class="manifesto-copy"><p class="eyebrow">DETRÁS DE CADA PUNTADA</p><h2 id="manifesto-title">Un oficio de manos.<br/>Y de <em>corazón.</em></h2><p>Este es un taller para crear con calma, escuchar de cerca y encontrar belleza en los detalles. Aquí, la costura es una forma de cuidar: la tela, la idea y a la persona que la lleva.</p><a href="#contacto" class="text-link">Hagamos algo bonito juntas <span aria-hidden="true">↗</span></a></div>
+    </section>
+    <section class="contact-section" id="contacto" aria-labelledby="contact-title"><div class="wrap contact-inner"><p class="eyebrow">LA PRÓXIMA HISTORIA PUEDE SER LA TUYA</p><h2 id="contact-title">¿Y si le damos<br/><em>forma a tu idea?</em></h2><p>Cuéntanos qué tienes en mente.<br/>Una foto, un boceto o unas ganas enormes de empezar.</p>{whatsappUrl ? <a class="button button-dark" href={whatsappUrl} target="_blank" rel="noopener noreferrer">Conversemos por WhatsApp <span aria-hidden="true">↗</span></a> : <><button class="button button-dark" disabled>WhatsApp · próximamente</button><small>Estamos preparando nuestro canal de contacto.</small></>}<span class="contact-flower" aria-hidden="true">✳</span><svg class="contact-thread" viewBox="0 0 400 300" aria-hidden="true"><path d="M0 250C90 200 20 50 130 50S200 280 290 200S330 80 400 100" fill="none" stroke="#b17b9b" stroke-width="2" stroke-dasharray="5 5"/></svg></div></section>
+  </main>
+  <footer class="wrap site-footer"><a href="#inicio" class="footer-brand">entre hilos<span>Costura con cariño.</span></a><p>Un hilo. Una idea. Algo hecho para ti.</p><small>Propuesta visual · nombre y muestras provisionales</small><a href="#inicio" class="back-top" aria-label="Volver al inicio">↑</a></footer>
+  <dialog id="project-dialog" aria-labelledby="dialog-title"><button class="dialog-close" aria-label="Cerrar detalle de la creación">✕</button><div id="dialog-content"></div></dialog>
+  {projects.map(p=><template id={`detail-${p.id}`}><div class="project-detail"><div class="detail-gallery" style={`background:${p.color}`}><div class="detail-view" data-view="0">{p.images.length ? <img src={p.images[0]} alt={p.title} width="500" height="580"/> : <SampleArt type={p.type}/>}</div><div class="detail-view" data-view="1" hidden>{p.images.length>1 ? <img src={p.images[1]} alt={`Detalle de ${p.title}`} width="500" height="580"/> : <SampleArt type={p.type} detail/>}</div><div class="view-buttons" role="group" aria-label="Vistas de la creación"><button data-gallery-view="0" aria-pressed="true">Vista completa</button><button data-gallery-view="1" aria-pressed="false">Detalle</button></div></div><div class="detail-copy"><p class="eyebrow">{p.category} / MUESTRA CONCEPTUAL</p><h2 id="dialog-title">{p.title}</h2><p>{p.description}</p><dl><div><dt>La tela</dt><dd>{p.fabric}</dd></div><div><dt>Qué se haría</dt><dd>{p.work}</dd></div><div><dt>Un detalle especial</dt><dd>{p.detail}</dd></div></dl><p class="sample-disclaimer">Ilustración de referencia para esta propuesta. Las fotografías y los detalles de trabajos reales se incorporarán después.</p><a href="#contacto" class="button button-dark" data-close-dialog>Quiero algo así <span aria-hidden="true">↗</span></a></div></div></template>)}
+  <script>
+    const dialog = document.querySelector<HTMLDialogElement>('#project-dialog')!;
+    const content = document.querySelector<HTMLDivElement>('#dialog-content')!;
+    const track = document.querySelector<HTMLDivElement>('#project-track')!;
+    let lastTrigger: HTMLElement | null = null;
+    const close = () => dialog.close();
+    document.querySelectorAll<HTMLButtonElement>('[data-project]').forEach(button => button.addEventListener('click',() => {
+      const template = document.querySelector<HTMLTemplateElement>(`#detail-${button.dataset.project}`);
+      if (!template) return;
+      lastTrigger = button;
+      content.replaceChildren(template.content.cloneNode(true));
+      dialog.showModal(); document.body.classList.add('modal-open');
+    }));
+    dialog.querySelector('.dialog-close')!.addEventListener('click',close);
+    dialog.addEventListener('click', event => { if(event.target === dialog) { const bounds=dialog.getBoundingClientRect(); if(event.clientX<bounds.left||event.clientX>bounds.right||event.clientY<bounds.top||event.clientY>bounds.bottom) close(); } });
+    dialog.addEventListener('close',() => { document.body.classList.remove('modal-open');lastTrigger?.focus({preventScroll:true}); });
+    content.addEventListener('click',event => {
+      const target=(event.target as HTMLElement).closest<HTMLElement>('[data-gallery-view], [data-close-dialog]');
+      if (!target) return;
+      if (target.hasAttribute('data-close-dialog')) { close();return; }
+      content.querySelectorAll<HTMLElement>('[data-view]').forEach(view => view.hidden=view.dataset.view!==target.dataset.galleryView);
+      content.querySelectorAll('[data-gallery-view]').forEach(button => button.setAttribute('aria-pressed',String(button===target)));
+    });
+    const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const move = (direction:number) => track.scrollBy({left:direction*(track.querySelector<HTMLElement>('.project-card:not([hidden])')?.offsetWidth ?? 350),behavior:reduced()?'instant':'smooth'});
+    document.querySelector('#previous-project')!.addEventListener('click',()=>move(-1));
+    document.querySelector('#next-project')!.addEventListener('click',()=>move(1));
+    track.addEventListener('keydown',event=>{if(event.target!==track) return;if(event.key==='ArrowRight'){event.preventDefault();move(1);}if(event.key==='ArrowLeft'){event.preventDefault();move(-1);}});
+    const updateControls = () => { (document.querySelector('#previous-project') as HTMLButtonElement).disabled=track.scrollLeft<5;(document.querySelector('#next-project') as HTMLButtonElement).disabled=track.scrollLeft+track.clientWidth>=track.scrollWidth-5; };
+    track.addEventListener('scroll',updateControls,{passive:true});
+    new ResizeObserver(updateControls).observe(track); updateControls();
+    document.querySelectorAll<HTMLButtonElement>('[data-filter]').forEach(button => button.addEventListener('click',()=>{
+      document.querySelectorAll('[data-filter]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+      document.querySelectorAll<HTMLElement>('.project-card').forEach(card=>card.hidden=button.dataset.filter!=='Todas'&&card.dataset.category!==button.dataset.filter);
+      track.scrollTo({left:0,behavior:'instant'});updateControls();
+    }));
+  </script>
+</body>
+</html>
