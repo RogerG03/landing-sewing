@@ -20,6 +20,10 @@ npm run preview
 
 Salida estática: `dist/`. En entornos aislados se puede definir `ASTRO_TELEMETRY_DISABLED=1` para evitar escribir configuración fuera del proyecto.
 
+## GitHub Pages
+
+El sitio se publica automáticamente al subir cambios a `feat/atelier-landing`. En el repositorio, selecciona **Settings → Pages → Build and deployment → Source → GitHub Actions**. La dirección del proyecto será https://rogerg03.github.io/landing-sewing/ . Astro usa `/landing-sewing/` como base para la página, el favicon y las imágenes.
+
 ## Contenido que se puede sustituir
 
 - `src/pages/index.astro`: nombre, presentación, servicios, historia y contacto.
