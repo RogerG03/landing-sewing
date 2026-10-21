@@ -9,6 +9,7 @@ export default function SewingArt({ frame = 0 }) {
   const zipOpacity = clamp((frame - 220) / 60) * (1 - clamp((frame - 420) / 70));
   return <svg viewBox="0 0 720 700" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <defs>
+      <clipPath id="growing-seam"><rect x="110" y="500" width={460 * sewing} height="100"/></clipPath>
       <pattern id="linen" width="7" height="7" patternUnits="userSpaceOnUse"><path d="M0 0H7M0 0V7" stroke="#453b49" strokeOpacity=".045" strokeWidth=".6"/></pattern>
       <pattern id="stitch" width="20" height="10" patternUnits="userSpaceOnUse"><path d="M2 5H12" stroke="#453b49" strokeWidth="1.7"/></pattern>
       <linearGradient id="body" x1="220" y1="190" x2="540" y2="490" gradientUnits="userSpaceOnUse"><stop stopColor="#e7cff8"/><stop offset="1" stopColor="#c09bdc"/></linearGradient>
@@ -22,7 +23,7 @@ export default function SewingArt({ frame = 0 }) {
       <g transform={`translate(539 180) rotate(${sewing * 270})`}><rect x="-22" y="-43" width="44" height="87" rx="9" fill={colors.pink} stroke={colors.ink} strokeWidth="1.5"/>{Array.from({length:13},(_,i)=><path key={i} d={`M-21 ${-33+i*5}L21 ${-28+i*5}`} stroke="#b967ab" strokeWidth="1"/>)}<ellipse cy="-43" rx="29" ry="8" fill={colors.blush} stroke={colors.ink} strokeWidth="1.5"/><ellipse cy="44" rx="29" ry="8" fill={colors.blush} stroke={colors.ink} strokeWidth="1.5"/><ellipse cy="-43" rx="7" ry="3" fill={colors.ink}/></g>
       <path d="M135 487C191 461 286 483 361 477L551 483L575 574C469 557 368 603 273 576C210 557 172 582 115 555Z" fill="url(#fabric)" stroke={colors.ink} strokeWidth="1.5"/>
       <path d="M135 487C191 461 286 483 361 477L551 483L575 574C469 557 368 603 273 576C210 557 172 582 115 555Z" fill="url(#linen)"/>
-      <path d="M150 534C231 518 306 558 379 537S499 519 550 539" stroke={colors.ink} strokeWidth="2" strokeDasharray="7 7" pathLength="1" strokeDashoffset={1-sewing} style={{strokeDasharray:'0.012 0.014'}}/>
+      <path d="M150 534C231 518 306 558 379 537S499 519 550 539" stroke={colors.ink} strokeWidth="2" strokeDasharray="7 7" clipPath="url(#growing-seam)"/>
       <ellipse cx="340" cy="500" rx="221" ry="16" fill={colors.ink} opacity=".07"/>
       <path d="M190 194H435C466 194 489 221 489 253V464H405V328H271V384H190Z" fill="url(#body)" stroke={colors.ink} strokeWidth="2"/>
       <path d="M190 194H435C466 194 489 221 489 253H190Z" fill="#ead9f5"/>

@@ -13,6 +13,7 @@ export default function MotionPlayer({ paused }) {
     const story = document.querySelector('.journey');
     let raf = 0;
     let start = performance.now();
+    const introInitial = Math.min(45, current.current);
     let last = start;
     let visible = true;
     let disposed = false;
@@ -21,7 +22,7 @@ export default function MotionPlayer({ paused }) {
       if (disposed || document.hidden || !visible) return;
       const distance = Math.max(1, story.offsetHeight - innerHeight);
       const progress = Math.max(0, Math.min(1, -story.getBoundingClientRect().top / distance));
-      const intro = Math.min(45, (now - start) / 40);
+      const intro = Math.min(45, introInitial + (now - start) / 40);
       const target = progress > .002 ? 45 + progress * 554 : intro;
       current.current += (target-current.current) * (1-Math.exp(-Math.min(64, now-last)/70));
       last = now;
