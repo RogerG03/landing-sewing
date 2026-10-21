@@ -23,20 +23,20 @@ const whatsappUrl = /^\d{8,15}$/.test(whatsappNumber) ? `https://wa.me/${whatsap
     <nav aria-label="Navegación principal"><a href="#taller">El taller</a><a href="#creaciones">Creaciones</a><a href="#contacto" class="nav-cta">Hablemos <span aria-hidden="true">↗</span></a></nav>
   </header>
   <main id="contenido">
-    <section class="journey" id="inicio" aria-label="De una idea a la última puntada">
-      <div class="story-sticky"><div class="scene-wrap"><SewingJourney client:load /></div></div>
-      <div class="hero wrap">
+    <section class="journey wrap" id="inicio" aria-label="De una idea a la última puntada">
+      <div class="story-sticky"><div class="scene-wrap"><SewingJourney client:media="(min-width: 961px)" /></div></div>
+      <div class="hero">
         <div class="hero-copy">
           <p class="eyebrow"><span class="tiny-flower" aria-hidden="true">✳</span> UN PEQUEÑO TALLER. MUCHAS POSIBILIDADES.</p>
           <h1>Tu idea.<br/>Mis manos.<br/><em>Algo único.</em></h1>
-          <p class="hero-description">Vestidos a medida, bordados y prendas que vuelven a enamorarte. Cada puntada, hecha con cariño.</p>
+          <p class="hero-description"><strong>Vestidos a medida, bordados y arreglos.</strong> Prendas que vuelven a enamorarte. Cada puntada, hecha con cariño.</p>
           <a href="#creaciones" class="button button-dark">Descubre lo que hacemos <span aria-hidden="true">↗</span></a>
           <a href="#taller" class="scroll-cue"><span aria-hidden="true">↓</span> Sigue el hilo</a>
         </div>
-        <span class="hero-side-note">Ideas que se convierten<br/>en tus prendas favoritas.</span>
+        <div class="mobile-art"><SewingJourney client:media="(max-width: 960px)" scene="machine" /></div>
       </div>
-      <div class="craft-chapter wrap" id="taller"><div class="chapter-copy"><p class="eyebrow">01 / EL PRINCIPIO DE ALGO BONITO</p><h2>Todo empieza <br/>con <em>un hilo.</em></h2><p>Una tela que te gusta. Un dibujo en una servilleta. Ese vestido que llevas tiempo imaginando. Escuchamos tu idea y le damos forma contigo.</p><span class="chapter-tag"><i style="background:var(--green)"></i> A tu medida, desde el primer trazo</span></div></div>
-      <div class="craft-chapter wrap"><div class="chapter-copy"><p class="eyebrow">02 / LOS DETALLES LO CAMBIAN TODO</p><h2>Lo especial está <br/>en <em>lo pequeño.</em></h2><p>Un cierre que encaja. Un bordado que cuenta algo. Un acabado que se siente bien. Cuidamos esos detalles que hacen tuya una prenda.</p><span class="chapter-tag"><i style="background:var(--blush)"></i> Con tiempo, oficio y mucho cariño</span></div></div>
+      <div class="craft-chapter" id="taller"><div class="chapter-copy"><p class="eyebrow">01 / EL PRINCIPIO DE ALGO BONITO</p><h2>Todo empieza <br/>con <em>un hilo.</em></h2><p>Una tela que te gusta. Un dibujo en una servilleta. Ese vestido que llevas tiempo imaginando. <strong>Escuchamos tu idea</strong> y le damos forma contigo.</p><span class="chapter-tag"><i style="background:var(--green)"></i> A tu medida, desde el primer trazo</span></div><div class="mobile-art"><SewingJourney client:media="(max-width: 960px)" scene="zipper" /></div></div>
+      <div class="craft-chapter"><div class="chapter-copy"><p class="eyebrow">02 / LOS DETALLES LO CAMBIAN TODO</p><h2>Lo especial está <br/>en <em>lo pequeño.</em></h2><p>Un cierre que encaja. Un bordado que cuenta algo. Un acabado que se siente bien. <strong>Cuidamos esos detalles</strong> que hacen tuya una prenda.</p><span class="chapter-tag"><i style="background:var(--blush)"></i> Con tiempo, oficio y mucho cariño</span></div><div class="mobile-art"><SewingJourney client:media="(max-width: 960px)" scene="embroidery" /></div></div>
     </section>
     <section class="services wrap" aria-label="Lo que hacemos">
       <div class="service-intro"><span class="eyebrow">HAY MUCHAS FORMAS<br/>DE HACERLO TUYO.</span><div class="palette-dots" aria-label="Paleta pastel: amarillo, verde, celeste, lila y rosas">{['#fff28a','#a6e99a','#a5d9e8','#d7b5f0','#f49be4','#f2a6bd'].map(c=><i style={`background:${c}`}></i>)}</div></div>

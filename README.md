@@ -31,7 +31,7 @@ Salida estática: `dist/`. En entornos aislados se puede definir `ASTRO_TELEMETR
 
 Astro genera el contenido HTML y una isla React integra `@remotion/player`. La composición vectorial pasa de máquina cosiendo y carrete desenrollándose a cremallera abriéndose y bordado floral. El avance sigue el scroll nativo y se invierte al subir. La pausa conserva el fotograma y permite continuar desplazándose.
 
-Remotion se carga dinámicamente. Con `prefers-reduced-motion`, se mantiene la ilustración estática y se puede activar la animación explícitamente. El texto está fuera de la composición decorativa. Los filtros y el carrusel usan JavaScript del navegador; los detalles utilizan un diálogo HTML nativo, con Escape y restitución del foco.
+Remotion se carga dinámicamente. Con `prefers-reduced-motion`, se mantiene la ilustración estática y se puede activar la animación explícitamente. El texto está fuera de la composición decorativa. En escritorio, una columna de la cuadrícula contiene la escena sticky hasta el final de la historia. A 960 px o menos, cada capítulo muestra su propia escena en el flujo normal; los gráficos no comparten una capa con los textos. No se fuerzan alturas de viewport para crear distancia de scroll. La lectura principal usa 18 px y los controles tienen al menos 46 px de altura. Los filtros y el carrusel usan JavaScript del navegador; los detalles utilizan un diálogo HTML nativo, con Escape y restitución del foco.
 
 No hay formularios, cuentas, analíticas ni datos personales almacenados. Google Fonts sirve Italiana y DM Sans, con alternativas locales serif y sans serif. Las muestras vectoriales se incluyen en el código y no usan fotografías de terceros.
 
