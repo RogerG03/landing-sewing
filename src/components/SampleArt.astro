@@ -16,13 +16,6 @@ const { type='dress', detail=false } = Astro.props;
       <path d="M182 137q-31-25-23 0q10 16 26 5q-8 30 10 14M316 137q31-25 23 0q-10 16-26 5q8 30-10 14" stroke="#9c6b80" stroke-width="3"/>
       <path d="M233 208q17-33 34 0" stroke="#91ae78" stroke-width="2"/><circle cx="250" cy="190" r="5" fill="#f2a6bd"/>
     </g>}
-    {type==='hoop' && <g>
-      <circle cx="250" cy="295" r="167" fill="#c49a72" stroke="#65576c" stroke-width="2"/><circle cx="250" cy="295" r="154" fill="#fff9ec" stroke="#65576c" stroke-width="2"/><circle cx="250" cy="295" r="154" fill={`url(#weave-${type}-${detail})`}/><rect x="232" y="114" width="36" height="27" rx="3" fill="#c49a72" stroke="#65576c" stroke-width="2"/><path d="M218 124H281" stroke="#65576c" stroke-width="4"/>
-      <path d="M250 406Q232 303 252 216M249 365Q188 322 179 268M250 347Q318 330 324 264" stroke="#78946a" stroke-width="4" stroke-dasharray="3 3"/>
-      {[[250,211,'#f2a6bd'],[179,263,'#fff28a'],[324,263,'#a5d9e8'],[219,309,'#f49be4']].map(([x,y,c])=><g transform={`translate(${x} ${y})`}>{Array.from({length:7},(_,i)=><ellipse cy="-17" rx="9" ry="17" fill={c} stroke="#806f77" stroke-width=".8" transform={`rotate(${i*360/7})`}/>)}<circle r="8" fill="#d9ac58"/></g>)}
-      <path d="M247 382C189 368 188 342 217 353Z M263 337C294 293 320 305 299 327Z M245 274C209 255 203 231 225 239Z" fill="#a6e99a" stroke="#78946a" stroke-width="1.5"/>
-      <path d="M357 388C443 402 450 464 391 479" stroke="#f2a6bd" stroke-width="2"/><path d="M386 455l12 47" stroke="#65576c" stroke-width="2"/>
-    </g>}
     {type==='blouse' && <g>
       <path d="M250 73v26M250 73c-3-25 32-17 18 0l-18 13M250 99L163 150H337Z" stroke="#756770" stroke-width="3"/>
       <path d="M210 139L161 162Q118 166 93 225L121 281L168 259L160 445Q250 472 340 445L332 259L379 281L407 225Q382 166 339 162L290 139Z" fill="#fff8e9" stroke="#65576c" stroke-width="2"/>

@@ -6,7 +6,6 @@ export default function SewingArt({ frame = 0 }) {
   const prefix = useId().replace(/:/g, '');
   const sewing = clamp(frame / 230);
   const zip = clamp((frame - 230) / 180);
-  const bloom = clamp((frame - 420) / 179);
   const machineOpacity = 1 - clamp((frame - 200) / 90);
   const zipOpacity = clamp((frame - 220) / 60) * (1 - clamp((frame - 420) / 70));
   return <svg viewBox="0 0 720 700" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -59,12 +58,5 @@ export default function SewingArt({ frame = 0 }) {
       {Array.from({length:30},(_,i)=>{const y=160+i*14; const split=Math.max(0,(210+zip*300-y)/(210+zip*300-140))*zip*145; return <g key={i}><rect x={345-split} y={y} width="12" height="7" rx="2" fill={colors.yellow} stroke={colors.ink}/><rect x={363+split} y={y+5} width="12" height="7" rx="2" fill={colors.yellow} stroke={colors.ink}/></g>;})}
       <g transform={`translate(360 ${210+zip*300})`}><rect x="-17" y="-13" width="34" height="37" rx="8" fill={colors.yellow} stroke={colors.ink} strokeWidth="2"/><rect x="-7" y="5" width="14" height="45" rx="6" fill={colors.yellow} stroke={colors.ink} strokeWidth="2"/><path d="M0 31v8" stroke={colors.ink} strokeWidth="2"/></g>
     </g>
-    <g opacity={clamp((frame-410)/65)} transform={`translate(360 350) rotate(${-12+12*bloom}) scale(${.8+.2*bloom})`}>
-      <circle r="206" fill="#d7b5f0" stroke={colors.ink} strokeWidth="2"/><circle r="186" fill="#fbf8ef" stroke={colors.ink} strokeWidth="2"/><circle r="186" fill={'url(#'+prefix+'-linen)'}/><rect x="-22" y="-220" width="44" height="30" rx="3" fill={colors.blush} stroke={colors.ink} strokeWidth="2"/><path d="M-35-211H35" stroke={colors.ink} strokeWidth="4" strokeLinecap="round"/>
-      <path d="M-18 130C-20 64 28 22 4-71M-12 72C-60 55-80 18-76-35M-11 91C32 91 72 46 78 5" stroke="#679c61" strokeWidth="4" strokeDasharray="4 4" pathLength="1" strokeDashoffset={1-bloom}/>
-      {[[-76,-49,colors.pink],[3,-86,colors.blush],[80,-6,colors.yellow],[-45,25,colors.blue]].map(([x,y,c],i)=><g key={i} transform={`translate(${x} ${y}) scale(${clamp(bloom*2-i*.25)})`}>{Array.from({length:6},(_,j)=><ellipse key={j} cy="-20" rx="10" ry="19" fill={c} stroke={colors.ink} strokeWidth="1" transform={`rotate(${j*60})`}/>)}<circle r="9" fill={colors.yellow} stroke={colors.ink}/></g>)}
-      <path d="M-26 66C-77 64-78 35-52 39C-33 42-24 56-26 66M25 44C65 14 69 46 39 54Z" fill={colors.green} stroke="#679c61" strokeWidth="1.5"/>
-      <path d="M100 95C160 120 194 93 163 59S156-8 191-29" stroke={colors.pink} strokeWidth="2.5" pathLength="1" strokeDasharray="1" strokeDashoffset={1-bloom}/><path d="M181-48L200-16" stroke={colors.ink} strokeWidth="2"/>
-    </g>
-  </svg>;
+</svg>;
 }

@@ -12,7 +12,7 @@ const whatsappUrl = /^\d{8,15}$/.test(whatsappNumber) ? `https://wa.me/${whatsap
 <head>
   <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Entre Hilos · Un cuaderno de costura</title>
-  <meta name="description" content="Abre nuestro cuaderno de costura. Vestidos a medida, bordados y arreglos: ideas, telas y puntadas para crear algo tuyo."/>
+  <meta name="description" content="Abre nuestro cuaderno de costura. Vestidos a medida y arreglos: ideas, telas y puntadas para crear algo tuyo."/>
   <meta name="theme-color" content="#fbf8ef"/>
   <link rel="icon" type="image/svg+xml" href={`${baseUrl}favicon.svg`}/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -22,14 +22,14 @@ const whatsappUrl = /^\d{8,15}$/.test(whatsappNumber) ? `https://wa.me/${whatsap
 <body>
 <a href="#contenido" class="skip-link">Saltar al contenido</a>
 <header class="site-header wrap">
-  <a href="#inicio" class="brand" aria-label="Entre Hilos, inicio"><svg viewBox="0 0 46 46" aria-hidden="true"><path d="M8 32C2 18 32 4 30 19S7 49 18 34S38 4 40 12S26 44 35 35M5 39L40 6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span>entre hilos<small>costura con cariño</small></span></a>
+  <a href="#inicio" class="brand" aria-label="Entre Hilos, inicio"><svg viewBox="0 0 46 46" aria-hidden="true"><path d="M8 32C2 18 32 4 30 19S7 49 18 34S38 4 40 12S26 44 35 35M5 39L40 6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span>Entre Hilos<small>Entre hilo y puntadas</small></span></a>
   <nav aria-label="Navegación principal"><a href="#cuaderno">El cuaderno</a><a href="#taller">El taller</a><a class="nav-contact" href="#contacto"><span class="nav-label">Cuéntanos tu idea</span><span class="nav-short">Hablemos</span> <span aria-hidden="true">↗</span></a></nav>
 </header>
 <main id="contenido">
   <section id="inicio" class="hero wrap" aria-labelledby="hero-title">
     <div class="hero-copy">
-      <h1 id="hero-title">un cuaderno,<br/>mil puntadas.</h1>
-      <p>Vestidos a medida, bordados y arreglos.<br/> Ideas que empiezan en papel y terminan siendo parte de ti.</p>
+      <h1 id="hero-title">Entre hilo<br/> y puntadas.</h1>
+      <p>Vestidos a medida y arreglos.<br/> Ideas que empiezan en papel y terminan siendo parte de ti.</p>
       <a class="button" href="#cuaderno">Abrir el cuaderno <span aria-hidden="true">↗</span></a>
       <div class="hero-note"><svg viewBox="0 0 100 65" aria-hidden="true"><path d="M90 6C78 72 28 55 11 36M9 55L9 34L30 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>pasa, hay mucho por crear</span></div>
       <div class="thread-palette" aria-label="Nuestros colores: amarillo, verde, celeste, lila y dos rosas">{['#fff28a','#a6e99a','#a5d9e8','#d7b5f0','#f49be4','#f2a6bd'].map(c=><span style={`background:${c}`}></span>)}<span class="palette-caption">todos los hilos caben aquí</span></div>
@@ -40,8 +40,8 @@ const whatsappUrl = /^\d{8,15}$/.test(whatsappNumber) ? `https://wa.me/${whatsap
       <a class="notebook-cover" href="#cuaderno" aria-label="Abrir el cuaderno de proyectos de Entre Hilos">
         <div class="cover-spine" aria-hidden="true"></div>
         <div class="cover-rings" aria-hidden="true">{Array.from({length:7},()=> <i></i>)}</div>
-        <span class="cover-title">mi cuaderno<br/>de costura</span>
-        <span class="cover-label"><span>Este cuaderno es de</span><strong>entre hilos</strong><span>Ideas para hacer tuyas.</span></span>
+        <span class="cover-title">Mi cuaderno<br/>de costura</span>
+        <span class="cover-label"><span>Este cuaderno es de</span><strong>Entre Hilos</strong><span>Ideas para hacer tuyas.</span></span>
         <SewingSticker kind="thread" class="cover-thread"/>
         <span class="cover-open">abrir y empezar <span aria-hidden="true">↗</span></span>
       </a>
@@ -49,9 +49,9 @@ const whatsappUrl = /^\d{8,15}$/.test(whatsappNumber) ? `https://wa.me/${whatsap
     </div>
   </section>
   <section class="project-section wrap" id="cuaderno" aria-labelledby="projects-title">
-    <div class="section-heading" id="creaciones"><div><h2 id="projects-title">ideas entre páginas</h2><p>Elige una pestaña. Pasa las hojas. Encuentra algo que te inspire.</p></div><SewingSticker kind="heart" class="heading-heart"/></div>
+    <div class="section-heading" id="creaciones"><div><h2 id="projects-title">Ideas entre páginas</h2><p>Elige una pestaña. Pasa las hojas. Encuentra algo que te inspire.</p></div><SewingSticker kind="heart" class="heading-heart"/></div>
     <div class="project-notebook">
-      <div class="notebook-tabs filters" role="group" aria-label="Filtrar creaciones">{['Todas','A medida','Bordado','Arreglos'].map((f,i)=><button data-filter={f} aria-pressed={i===0}>{f}</button>)}</div>
+      <div class="notebook-tabs filters" role="group" aria-label="Filtrar creaciones">{['Todas','A medida','Arreglos'].map((f,i)=><button data-filter={f} aria-pressed={i===0}>{f}</button>)}</div>
       <div class="book-body">
         <div class="book-binding" aria-hidden="true">{Array.from({length:9},()=> <i></i>)}</div>
         <div id="project-track" class="project-track" role="region" aria-label="Hojas del cuaderno de creaciones" tabindex="0">
@@ -60,29 +60,29 @@ const whatsappUrl = /^\d{8,15}$/.test(whatsappNumber) ? `https://wa.me/${whatsap
             <div class="project-meta"><h3>{p.title}</h3><p class="project-description">{p.description}</p><dl><div><dt>La tela</dt><dd>{p.fabric}</dd></div><div><dt>Ese pequeño detalle</dt><dd>{p.detail}</dd></div></dl><button class="button" data-project={p.id}>Ver la ficha <span aria-hidden="true">↗</span></button><span class="page-annotation">{p.label}</span></div>
           </article>)}
         </div>
-        <div class="notebook-pagination"><button id="previous-project" aria-label="Ver creaciones anteriores"><span aria-hidden="true">←</span> Hoja anterior</button><output id="page-status" aria-live="polite">Proyecto 1 de 4</output><button id="next-project" aria-label="Ver más creaciones">Siguiente hoja <span aria-hidden="true">→</span></button></div>
+        <div class="notebook-pagination"><button id="previous-project" aria-label="Ver creaciones anteriores"><span aria-hidden="true">←</span> Hoja anterior</button><output id="page-status" aria-live="polite">Proyecto 1 de {projects.length}</output><button id="next-project" aria-label="Ver más creaciones">Siguiente hoja <span aria-hidden="true">→</span></button></div>
       </div>
     </div>
     <p class="gallery-foot">Nuestro cuaderno de inspiración: muestras conceptuales, no trabajos realizados por el taller. <a href="#creditos">Crédito de la fotografía</a>.</p>
     <noscript><p class="gallery-foot">Desliza las hojas hacia los lados para recorrer los proyectos. También puedes usar las flechas del teclado con el cuaderno enfocado.</p></noscript>
   </section>
   <section id="taller" class="journey wrap" aria-labelledby="workshop-title">
-    <div class="journey-copy"><h2 id="workshop-title">del trazo<br/>a la puntada.</h2>
+    <div class="journey-copy"><h2 id="workshop-title">Del trazo<br/>a la puntada.</h2>
       <div class="chapter"><h3>Todo empieza contigo</h3><p>Una tela que te gusta, un boceto o ese vestido que llevas tiempo imaginando. Escuchamos tu idea y le damos forma juntas.</p></div>
-      <div class="chapter"><h3>Los detalles hacen la prenda</h3><p>Un cierre que encaja. Un bordado que cuenta algo. Elegimos telas, colores y acabados con tiempo y con cariño.</p></div>
+      <div class="chapter"><h3>Los detalles hacen la prenda</h3><p>Un cierre que encaja. Una costura que acompaña cada movimiento. Elegimos telas, colores y acabados con tiempo y con cariño.</p></div>
       <div class="chapter"><h3>La probamos. La hacemos tuya.</h3><p>Tomamos medidas, probamos y ajustamos. También transformamos prendas que ya tienes para que vuelvas a disfrutarlas.</p></div>
     </div>
-    <div class="story-sticky"><div class="workshop-note"><p class="workshop-caption">apuntes del taller</p><SewingJourney client:visible /></div></div>
+    <div class="story-sticky"><div class="workshop-note"><p class="workshop-caption">Apuntes del taller</p><SewingJourney client:visible /></div></div>
   </section>
-  <section id="preguntas" class="questions wrap" aria-labelledby="questions-title"><div class="question-heading"><SewingSticker kind="flower"/><h2 id="questions-title">antes de empezar</h2></div><div class="question-list">
+  <section id="preguntas" class="questions wrap" aria-labelledby="questions-title"><div class="question-heading"><SewingSticker kind="flower"/><h2 id="questions-title">Antes de empezar</h2></div><div class="question-list">
     <details><summary>¿Puedo traer una idea o una foto?</summary><p>Sí. Una imagen, un boceto o una prenda que te guste ayudan a conversar sobre la silueta, la tela y los acabados que buscas.</p></details>
     <details><summary>¿También hacen arreglos?</summary><p>La propuesta incluye ajustes y transformaciones. Revisamos la prenda para valorar qué cambios se pueden realizar, desde el largo hasta el ajuste de cintura.</p></details>
     <details><summary>¿Cuánto cuesta y cuánto tarda?</summary><p>El precio y el plazo se confirman al revisar el diseño, la tela y el trabajo necesario. Esta página todavía no tiene tarifas ni agenda publicadas.</p></details>
     <details><summary>¿Las fotos son trabajos del taller?</summary><p>No. Son imágenes de inspiración acreditadas y muestras ilustradas. Las fotografías de trabajos reales se incorporarán cuando estén disponibles.</p></details>
   </div></section>
-  <section id="contacto" class="contact wrap" aria-labelledby="contact-title"><div class="contact-paper"><SewingSticker kind="heart" class="contact-heart"/><h2 id="contact-title">una página<br/>para tu idea.</h2><p>Una foto, un boceto o una prenda que quieras volver a llevar.<br/> Cuéntanos qué tienes en mente.</p>{whatsappUrl ? <a class="button" href={whatsappUrl} target="_blank" rel="noopener noreferrer">Conversar por WhatsApp <span aria-hidden="true">↗</span></a> : <><button class="button" disabled aria-describedby="contact-status">WhatsApp próximamente</button><small id="contact-status">Estamos preparando nuestro canal de contacto.</small></>}</div></section>
+  <section id="contacto" class="contact wrap" aria-labelledby="contact-title"><div class="contact-paper"><SewingSticker kind="heart" class="contact-heart"/><h2 id="contact-title">Una página<br/>para tu idea.</h2><p>Una foto, un boceto o una prenda que quieras volver a llevar.<br/> Cuéntanos qué tienes en mente.</p>{whatsappUrl ? <a class="button" href={whatsappUrl} target="_blank" rel="noopener noreferrer">Conversar por WhatsApp <span aria-hidden="true">↗</span></a> : <><button class="button" disabled aria-describedby="contact-status">WhatsApp próximamente</button><small id="contact-status">Estamos preparando nuestro canal de contacto.</small></>}</div></section>
 </main>
-<footer class="site-footer wrap"><a href="#inicio" class="footer-brand">entre hilos<span>costura con cariño</span></a><p>Un hilo. Una idea. Algo hecho para ti.</p><a href="#inicio" class="back-top">Volver al inicio ↑</a><div class="credits" id="creditos">Propuesta visual: nombre y muestras provisionales. Foto de inspiración de <a href="https://unsplash.com/photos/white-sleeveless-dress-on-clothes-hanger-mRY0K-kkF_A" target="_blank" rel="noopener noreferrer">Karen Willis Holmes / Unsplash</a>. No representa un trabajo del taller.</div></footer>
+<footer class="site-footer wrap"><a href="#inicio" class="footer-brand">Entre Hilos<span>Entre hilo y puntadas</span></a><p>Un hilo. Una idea. Algo hecho para ti.</p><a href="#inicio" class="back-top">Volver al inicio ↑</a><div class="credits" id="creditos">Propuesta visual: nombre y muestras provisionales. Foto de inspiración de <a href="https://unsplash.com/photos/white-sleeveless-dress-on-clothes-hanger-mRY0K-kkF_A" target="_blank" rel="noopener noreferrer">Karen Willis Holmes / Unsplash</a>. No representa un trabajo del taller.</div></footer>
 <dialog id="project-dialog" aria-labelledby="dialog-title"><button class="dialog-close" aria-label="Cerrar detalle de la creación">×</button><div id="dialog-content"></div></dialog>
   {projects.map(p=><template id={`detail-${p.id}`}><div class="project-detail"><div class:list={['detail-gallery',{'has-photo':p.images.length>0}]} style={`background:${p.color}`}><div class="detail-view" data-view="0">{p.images.length ? <img src={baseUrl + p.images[0].replace(/^\//, '')} alt={p.title + (p.photoCredit ? ', fotografía de referencia' : '')} width="1400" height="2100"/> : <SampleArt type={p.type}/>}</div><div class:list={['detail-view',{'photo-crop':p.images.length===1}]} data-view="1" hidden>{p.images.length ? <img src={baseUrl + (p.images[1]??p.images[0]).replace(/^\//, '')} alt={`Detalle fotográfico de referencia para ${p.title}`} width="1400" height="2100"/> : <SampleArt type={p.type} detail/>}</div><div class="view-buttons" role="group" aria-label="Vistas de la creación"><button data-gallery-view="0" aria-pressed="true">Vista completa</button><button data-gallery-view="1" aria-pressed="false">Detalle</button></div></div><div class="detail-copy"><h2 id="dialog-title">{p.title}</h2><p class="detail-category">{p.category} · {p.photoCredit ? 'Imagen de inspiración' : 'Muestra conceptual'}</p><p>{p.description}</p><dl><div><dt>{p.images.length ? 'La tela, a tu elección' : 'La tela'}</dt><dd>{p.fabric}</dd></div><div><dt>Qué se haría</dt><dd>{p.work}</dd></div><div><dt>Un detalle especial</dt><dd>{p.detail}</dd></div></dl><p class="sample-disclaimer">{p.photoCredit ? 'Fotografía de inspiración de Karen Willis Holmes / Unsplash. No representa un trabajo del taller.' : 'Ilustración de referencia para esta propuesta. Las fotografías y los detalles de trabajos reales se incorporarán después.'}</p><a href="#contacto" class="button button-dark" data-close-dialog>Quiero algo así</a></div></div></template>)}
   <script>
@@ -128,6 +128,11 @@ const whatsappUrl = /^\d{8,15}$/.test(whatsappNumber) ? `https://wa.me/${whatsap
       document.querySelectorAll('[data-filter]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
       document.querySelectorAll<HTMLElement>('.project-card').forEach(card=>card.hidden=button.dataset.filter!=='Todas'&&card.dataset.category!==button.dataset.filter);
       track.scrollTo({left:0,behavior:'instant'});updateControls();
+      if (!reduced()) {
+        const page = track.querySelector<HTMLElement>('.project-card:not([hidden])')!;
+        page.getAnimations().forEach(animation=>animation.cancel());
+        page.animate([{transform:'translateX(20px)',opacity:.65},{transform:'translateX(0)',opacity:1}],{duration:240,easing:'cubic-bezier(.23,1,.32,1)'});
+      }
     }));
   </script>
 </body>

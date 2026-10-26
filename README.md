@@ -29,10 +29,11 @@ Salida estática en `dist/`, ruta base `/landing-sewing/`. En entornos aislados 
 ## Interacción
 
 - La portada y el botón principal llevan al cuaderno abierto.
-- Las pestañas filtran las cuatro muestras por categoría.
+- Las pestañas alineadas filtran tres muestras entre Todas, A medida y Arreglos. El taller no ofrece bordado.
 - Los botones anterior/siguiente pasan de proyecto y actualizan un contador anunciado por lectores de pantalla. El contenedor admite desplazamiento táctil y flechas del teclado cuando tiene el foco.
 - Cada proyecto abre una ficha mediante diálogo nativo con vista completa/detalle, cierre con Escape y restitución del foco.
-- El proceso de costura conserva la composición React/Remotion original, vinculada al scroll, con pausa y póster estático para movimiento reducido.
+- La portada tiene una bienvenida suave y responde al foco y al cursor. Las hojas se deslizan y los filtros presentan la página con una transición breve.
+- La máquina y el cierre se animan en un ciclo autónomo de 60 segundos, con pausa y póster estático para movimiento reducido; no dependen del scroll.
 - Las preguntas usan `details` nativos. Los movimientos tienen alternativa para `prefers-reduced-motion`.
 
 Sin JavaScript se conserva el contenido y el cuaderno admite desplazamiento horizontal nativo; filtros, contador y fichas necesitan JavaScript.
@@ -51,4 +52,4 @@ Nombre y muestras continúan siendo provisionales. No se inventaron precios, res
 
 Compilar con `npm run build`. Revisar 1440, 768, 390 y 320 px, filtros, contador, teclado, fichas, Escape, foco, movimiento reducido y lectura sin JavaScript. Probar también en un teléfono real antes del lanzamiento.
 
-Se conserva `.github/workflows/pages.yml`: un push a `feat/atelier-landing` puede publicar en GitHub Pages si está configurado con GitHub Actions. Este rediseño se entrega localmente, sin push ni despliegue.
+Se conserva `.github/workflows/pages.yml`: un push a `feat/atelier-landing` puede publicar en GitHub Pages si está configurado con GitHub Actions. Los cambios del cuaderno se mantienen en la rama `refactor`.
