@@ -17,7 +17,7 @@ const whatsappUrl = /^\d{8,15}$/.test(whatsappNumber) ? `https://wa.me/${whatsap
   <link rel="icon" type="image/svg+xml" href={`${baseUrl}favicon.svg`}/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,500..600,50,1;1,9..144,500,50,1&display=swap" rel="stylesheet"/>
-  <noscript><style>.project-notebook .notebook-tabs,.project-notebook .notebook-pagination{display:none}</style></noscript>
+  <noscript><style>.project-notebook .notebook-tabs,.project-notebook .notebook-pagination,.hero-object .float-toggle{display:none}</style></noscript>
 </head>
 <body>
 <a href="#contenido" class="skip-link">Saltar al contenido</a>
@@ -46,6 +46,7 @@ const whatsappUrl = /^\d{8,15}$/.test(whatsappNumber) ? `https://wa.me/${whatsap
         <span class="cover-open">abrir y empezar <span aria-hidden="true">↗</span></span>
       </a>
       <p class="object-caption">un hilo, una idea, algo único.</p>
+      <button class="float-toggle" aria-pressed="true">Pausar flotación</button>
     </div>
   </section>
   <section class="project-section wrap" id="cuaderno" aria-labelledby="projects-title">
@@ -109,7 +110,36 @@ const whatsappUrl = /^\d{8,15}$/.test(whatsappNumber) ? `https://wa.me/${whatsap
       content.querySelectorAll('[data-gallery-view]').forEach(button => button.setAttribute('aria-pressed',String(button===target)));
     });
     const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const move = (direction:number) => track.scrollBy({left:direction*(track.querySelector<HTMLElement>('.project-card:not([hidden])')?.offsetWidth ?? 350),behavior:reduced()?'instant':'smooth'});
+    const floatToggle = document.querySelector<HTMLButtonElement>('.float-toggle')!;
+    floatToggle.addEventListener('click',()=>{
+      const paused = document.querySelector('.hero-object')!.classList.toggle('is-paused');
+      floatToggle.setAttribute('aria-pressed',String(!paused));
+      floatToggle.textContent = paused ? 'Reanudar flotación' : 'Pausar flotación';
+    });
+    let pageTurn: Animation | null = null;
+    const revealPage = (page:HTMLElement,direction:number) => {
+      pageTurn = page.animate([
+        {transform:`translateX(${direction*8}%) rotateY(${direction*18}deg)`,opacity:.55},
+        {transform:'translateX(0) rotateY(0)',opacity:1}
+      ],{duration:300,easing:'cubic-bezier(.23,1,.32,1)'});
+    };
+    const move = async (direction:number) => {
+      pageTurn?.cancel();
+      const pages = [...track.querySelectorAll<HTMLElement>('.project-card:not([hidden])')];
+      const index = Math.round(track.scrollLeft/track.clientWidth);
+      const next = Math.max(0,Math.min(pages.length-1,index+direction));
+      if (next===index) return;
+      if (!reduced()) {
+        pageTurn = pages[index].animate([
+          {transform:'rotateY(0)',opacity:1},
+          {transform:`rotateY(${-direction*24}deg)`,opacity:.35}
+        ],{duration:160,easing:'cubic-bezier(.77,0,.175,1)'});
+        try { await pageTurn.finished; } catch { return; }
+      }
+      track.scrollTo({left:next*track.clientWidth,behavior:'instant'});
+      updateControls();
+      if (!reduced()) revealPage(pages[next],direction);
+    };
     document.querySelector('#previous-project')!.addEventListener('click',()=>move(-1));
     document.querySelector('#next-project')!.addEventListener('click',()=>move(1));
     track.addEventListener('keydown',event=>{if(event.target!==track) return;if(event.key==='ArrowRight'){event.preventDefault();move(1);}if(event.key==='ArrowLeft'){event.preventDefault();move(-1);}});
@@ -125,13 +155,13 @@ const whatsappUrl = /^\d{8,15}$/.test(whatsappNumber) ? `https://wa.me/${whatsap
     track.addEventListener('scroll',updateControls,{passive:true});
     new ResizeObserver(updateControls).observe(track); updateControls();
     document.querySelectorAll<HTMLButtonElement>('[data-filter]').forEach(button => button.addEventListener('click',()=>{
+      pageTurn?.cancel();
       document.querySelectorAll('[data-filter]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
       document.querySelectorAll<HTMLElement>('.project-card').forEach(card=>card.hidden=button.dataset.filter!=='Todas'&&card.dataset.category!==button.dataset.filter);
       track.scrollTo({left:0,behavior:'instant'});updateControls();
       if (!reduced()) {
         const page = track.querySelector<HTMLElement>('.project-card:not([hidden])')!;
-        page.getAnimations().forEach(animation=>animation.cancel());
-        page.animate([{transform:'translateX(20px)',opacity:.65},{transform:'translateX(0)',opacity:1}],{duration:240,easing:'cubic-bezier(.23,1,.32,1)'});
+        revealPage(page,1);
       }
     }));
   </script>

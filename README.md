@@ -32,8 +32,8 @@ Salida estática en `dist/`, ruta base `/landing-sewing/`. En entornos aislados 
 - Las pestañas alineadas filtran tres muestras entre Todas, A medida y Arreglos. El taller no ofrece bordado.
 - Los botones anterior/siguiente pasan de proyecto y actualizan un contador anunciado por lectores de pantalla. El contenedor admite desplazamiento táctil y flechas del teclado cuando tiene el foco.
 - Cada proyecto abre una ficha mediante diálogo nativo con vista completa/detalle, cierre con Escape y restitución del foco.
-- La portada tiene una bienvenida suave y responde al foco y al cursor. Las hojas se deslizan y los filtros presentan la página con una transición breve.
-- La máquina y el cierre se animan en un ciclo autónomo de 60 segundos, con pausa y póster estático para movimiento reducido; no dependen del scroll.
+- La portada flota suavemente en un ciclo de 7 segundos con control de pausa y responde al foco y al cursor. Las hojas giran en perspectiva al avanzar o retroceder y al filtrar; el gesto táctil conserva desplazamiento nativo.
+- La máquina y el cierre se animan en un ciclo autónomo de 48 segundos. Del cierre aparecen tres pequeñas prendas. Conserva pausa y póster estático para movimiento reducido; no depende del scroll.
 - Las preguntas usan `details` nativos. Los movimientos tienen alternativa para `prefers-reduced-motion`.
 
 Sin JavaScript se conserva el contenido y el cuaderno admite desplazamiento horizontal nativo; filtros, contador y fichas necesitan JavaScript.

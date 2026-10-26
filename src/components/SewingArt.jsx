@@ -56,6 +56,17 @@ export default function SewingArt({ frame = 0 }) {
       <path d={`M160 150Q255 125 356 140L${356-zip*145} 170L356 ${210+zip*300}V590Q260 602 160 570Z`} fill={colors.blush} stroke={colors.ink} strokeWidth="1.5"/>
       <path d={`M560 150Q465 125 364 140L${364+zip*145} 170L364 ${210+zip*300}V590Q460 602 560 570Z`} fill={colors.pink} stroke={colors.ink} strokeWidth="1.5"/>
       {Array.from({length:30},(_,i)=>{const y=160+i*14; const split=Math.max(0,(210+zip*300-y)/(210+zip*300-140))*zip*145; return <g key={i}><rect x={345-split} y={y} width="12" height="7" rx="2" fill={colors.yellow} stroke={colors.ink}/><rect x={363+split} y={y+5} width="12" height="7" rx="2" fill={colors.yellow} stroke={colors.ink}/></g>;})}
+      {[
+        {x:300,y:245,color:colors.yellow,path:'M-14-31L-27-22L-18-6L-10-12L-25 33Q0 42 25 33L10-12L18-6L27-22L14-31Q0-16-14-31Z'},
+        {x:420,y:220,color:colors.green,path:'M-12-25L-30-17L-43 4L-25 15L-18 5L-20 31H20L18 5L25 15L43 4L30-17L12-25Q0-12-12-25Z'},
+        {x:365,y:340,color:colors.lavender,path:'M-19-24H19L33 29Q0 40-33 29Z'},
+      ].map(({x,y,color,path},i)=>{
+        const reveal = clamp((zip-.3-i*.18)/.24);
+        return <g key={i} data-garment={i} opacity={reveal} transform={`translate(${360+(x-360)*reveal} ${395+(y-395)*reveal}) rotate(${(i-1)*10*reveal}) scale(${.7+.3*reveal})`}>
+          <path d={path} fill={color} stroke={colors.ink} strokeWidth="2" strokeLinejoin="round"/>
+          <path d="M-10 22H10" stroke={colors.ink} strokeWidth="1.5" strokeDasharray="3 3"/>
+        </g>;
+      })}
       <g transform={`translate(360 ${210+zip*300})`}><rect x="-17" y="-13" width="34" height="37" rx="8" fill={colors.yellow} stroke={colors.ink} strokeWidth="2"/><rect x="-7" y="5" width="14" height="45" rx="6" fill={colors.yellow} stroke={colors.ink} strokeWidth="2"/><path d="M0 31v8" stroke={colors.ink} strokeWidth="2"/></g>
     </g>
 </svg>;

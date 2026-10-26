@@ -323,14 +323,31 @@ p {
 
 @media (prefers-reduced-motion:no-preference) {
   .hero-object {
-    animation:cover-welcome 4.8s cubic-bezier(.77,0,.175,1)
+    animation:cover-float 7s ease-in-out infinite
   }
 }
 
-@keyframes cover-welcome {
-  0%,100% { transform:translateY(0) rotate(0) }
-  35% { transform:translateY(-12px) rotate(-2deg) }
-  70% { transform:translateY(-4px) rotate(1deg) }
+@keyframes cover-float {
+  0%,100% { transform:perspective(1000px) translateY(0) rotateY(-2deg) rotate(-.5deg) }
+  50% { transform:perspective(1000px) translateY(-6px) rotateY(2deg) rotate(.5deg) }
+}
+
+.hero-object.is-paused {
+  animation-play-state:paused
+}
+
+.float-toggle {
+  margin-top:12px;
+  padding:8px 12px;
+  font-size:13px;
+  text-decoration:underline;
+  text-underline-offset:4px;
+  background:transparent;
+  border:0
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .float-toggle { display:none }
 }
 
 .cover-title {
@@ -550,6 +567,7 @@ p {
 }
 
 .project-track {
+  perspective:1200px;
   display:flex;
   overflow-x:auto;
   scroll-snap-type:x mandatory;
@@ -560,6 +578,7 @@ p {
 }
 
 .project-card {
+  transform-origin:left center;
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:52px;
@@ -1136,9 +1155,6 @@ dialog::backdrop {
   }
   .thread-palette {
     animation:paper-arrive .7s .3s both
-  }
-  .hero-object {
-    animation:paper-arrive .9s .15s both
   }
   .project-section h2,.section-heading p,.project-notebook,.journey h2,.chapter,.workshop-note,.question-heading,.question-list,.contact-paper,.site-footer {
     animation:paper-arrive .7s both;
