@@ -25,11 +25,11 @@ export default function MotionPlayer({ paused, scene, host }) {
       const progress = scene === 'journey'
         ? Math.max(0, Math.min(1, -bounds.top / Math.max(1, story.offsetHeight-innerHeight)))
         : Math.max(0, Math.min(1, ((innerHeight-bounds.top)/(innerHeight+bounds.height)-.15)/.65));
-      const intro = Math.min(45, introInitial + (now - start) / 40);
+      const intro = Math.min(45, introInitial + (now - start) / 85);
       const target = scene === 'journey'
         ? progress > .002 ? 45+progress*554 : intro
         : range[0]+progress*(range[1]-range[0]);
-      current.current += (target-current.current) * (1-Math.exp(-Math.min(64, now-last)/70));
+      current.current += (target-current.current) * (1-Math.exp(-Math.min(64, now-last)/160));
       last = now;
       player.current?.seekTo(Math.round(current.current));
       if (Math.abs(target-current.current)>.3 || (scene==='journey' && intro<45)) raf = requestAnimationFrame(tick);

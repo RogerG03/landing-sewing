@@ -1,51 +1,54 @@
-# Entre Hilos · Landing de costura
+# Entre Hilos · Cuaderno de costura
 
-Primera propuesta para un taller de costura: vestidos a medida, bordados y arreglos. Nombre, textos y muestras provisionales. Paleta uno: amarillo `#FFF28A`, verde `#A6E99A`, celeste `#A5D9E8`, lila `#D7B5F0`, rosa `#F49BE4` y rosa suave `#F2A6BD`.
+Landing interactiva en Astro y React con forma de cuaderno de proyectos: portada ilustrada, pestañas por tipo de trabajo, hojas con notas y fichas de detalle.
+
+## Diseño acordado
+
+Conservar la paleta original: papel `#FBF8EF`, tinta `#453B49`, amarillo `#FFF28A`, verde `#A6E99A`, celeste `#A5D9E8`, lila `#D7B5F0`, rosa `#F49BE4` y rosa suave `#F2A6BD`. No sustituirla por otra dirección artística sin una petición explícita.
+
+Referencia del usuario: [Superr / Refero](https://styles.refero.design/style/cfd0fec1-f25a-4b9b-9bd0-d5b66960f2f2). Se adaptan el papel, las etiquetas, las anotaciones, las pegatinas y los bordes suaves a un cuaderno de costura. No se adopta el naranja de Superr ni se replica su marca. Fraunces aporta títulos suaves y DM Sans mantiene la lectura y los controles.
 
 ## Desarrollo
 
 Requiere Node.js 22.12 o posterior.
 
 ```sh
-npm install
+npm ci
 npm run dev
 ```
 
-Vista local: http://127.0.0.1:4321/
+Vista local: http://127.0.0.1:4321/landing-sewing/ .
 
 ```sh
 npm run build
 npm run preview
 ```
 
-Salida estática: `dist/`. En entornos aislados se puede definir `ASTRO_TELEMETRY_DISABLED=1` para evitar escribir configuración fuera del proyecto.
+Salida estática en `dist/`, ruta base `/landing-sewing/`. En entornos aislados se puede definir `ASTRO_TELEMETRY_DISABLED=1`.
 
-## GitHub Pages
+## Interacción
 
-El sitio se publica automáticamente al subir cambios a `feat/atelier-landing`. En el repositorio, selecciona **Settings → Pages → Build and deployment → Source → GitHub Actions**. La dirección del proyecto será https://rogerg03.github.io/landing-sewing/ . Astro usa `/landing-sewing/` como base para la página, el favicon y las imágenes.
+- La portada y el botón principal llevan al cuaderno abierto.
+- Las pestañas filtran las cuatro muestras por categoría.
+- Los botones anterior/siguiente pasan de proyecto y actualizan un contador anunciado por lectores de pantalla. El contenedor admite desplazamiento táctil y flechas del teclado cuando tiene el foco.
+- Cada proyecto abre una ficha mediante diálogo nativo con vista completa/detalle, cierre con Escape y restitución del foco.
+- El proceso de costura conserva la composición React/Remotion original, vinculada al scroll, con pausa y póster estático para movimiento reducido.
+- Las preguntas usan `details` nativos. Los movimientos tienen alternativa para `prefers-reduced-motion`.
 
-## Contenido que se puede sustituir
+Sin JavaScript se conserva el contenido y el cuaderno admite desplazamiento horizontal nativo; filtros, contador y fichas necesitan JavaScript.
 
-- `src/pages/index.astro`: nombre, presentación, servicios, historia y contacto.
-- `src/data/projects.ts`: catálogo, telas, detalles y fotos; cada entrada admite URLs en `images`. Sin fotos, se muestran ilustraciones originales señaladas como muestras conceptuales.
-- `whatsappNumber` en el mismo archivo: número internacional, solo dígitos. Al proporcionar un número válido, el contacto se convierte en enlace real de WhatsApp con mensaje inicial. Mientras está vacío, se muestra como próximamente.
-- `src/styles/global.css`: paleta, tipografía y composición responsive.
+## Contenido editable
 
-## Animación
+- `src/pages/index.astro`: presentación, cuaderno, proceso, preguntas y contacto.
+- `src/styles/global.css`: paleta, formas de papel, encuadernación, responsive y movimiento.
+- `src/components/SewingSticker.astro`: pegatinas vectoriales originales de flor, corazón cosido, carrete y tijeras.
+- `src/data/projects.ts`: muestras, telas, descripciones y WhatsApp.
+- `public/images/CREDITS.md`: crédito de la foto de inspiración de Karen Willis Holmes / Unsplash. No es un trabajo del taller.
 
-Astro genera el contenido HTML y una isla React integra `@remotion/player`. La composición vectorial pasa de máquina cosiendo y carrete desenrollándose a cremallera abriéndose y bordado floral. El avance sigue el scroll nativo y se invierte al subir. La pausa conserva el fotograma y permite continuar desplazándose.
+Nombre y muestras continúan siendo provisionales. No se inventaron precios, reseñas ni contacto. Para activar WhatsApp, configurar `whatsappNumber` en formato internacional de 8–15 dígitos; mientras esté vacío el canal se muestra pendiente.
 
-Remotion se carga dinámicamente. Con `prefers-reduced-motion`, se mantiene la ilustración estática y se puede activar la animación explícitamente. El texto está fuera de la composición decorativa. En escritorio, una columna de la cuadrícula contiene la escena sticky hasta el final de la historia. A 960 px o menos, cada capítulo muestra su propia escena en el flujo normal; los gráficos no comparten una capa con los textos. No se fuerzan alturas de viewport para crear distancia de scroll. La lectura principal usa 18 px y los controles tienen al menos 46 px de altura. Los filtros y el carrusel usan JavaScript del navegador; los detalles utilizan un diálogo HTML nativo, con Escape y restitución del foco.
+## Validación y publicación
 
-No hay formularios, cuentas, analíticas ni datos personales almacenados. Google Fonts sirve Italiana y DM Sans, con alternativas locales serif y sans serif. Las muestras vectoriales se incluyen en el código. Una tarjeta usa una fotografía de inspiración de Karen Willis Holmes / Unsplash para revisar el diseño con fondos claros y oscuros; su crédito y licencia están en `public/images/CREDITS.md` y en la ficha. No se presenta como trabajo del taller. Los títulos se mantienen fuera de las imágenes; las etiquetas y el botón tienen superficies opacas para conservar contraste. La vista completa de la ficha preserva las proporciones de la foto; la segunda vista muestra un encuadre de detalle cuando solo hay una imagen.
+Compilar con `npm run build`. Revisar 1440, 768, 390 y 320 px, filtros, contador, teclado, fichas, Escape, foco, movimiento reducido y lectura sin JavaScript. Probar también en un teléfono real antes del lanzamiento.
 
-## Revisión manual
-
-1. Abrir la portada en escritorio y móvil; comprobar que no exista desplazamiento horizontal.
-2. Bajar y subir por la historia; verificar máquina, cremallera y bordado, y pausar/reanudar.
-3. Probar filtros, flechas y navegación del carrusel con teclado.
-4. Abrir una creación, cambiar vista completa/detalle y cerrar con Escape.
-5. Activar movimiento reducido y comprobar el póster estático.
-6. Compilar con `npm run build` antes de desplegar.
-
-Documentación oficial: [Astro + React](https://docs.astro.build/en/guides/integrations-guide/react/) y [Remotion Player](https://www.remotion.dev/docs/player/player).
+Se conserva `.github/workflows/pages.yml`: un push a `feat/atelier-landing` puede publicar en GitHub Pages si está configurado con GitHub Actions. Este rediseño se entrega localmente, sin push ni despliegue.

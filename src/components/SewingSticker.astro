@@ -1,0 +1,28 @@
+---
+const { kind = 'flower', class: className = '' } = Astro.props;
+---
+<svg class:list={['sewing-sticker', className]} viewBox="0 0 160 160" fill="none" aria-hidden="true">
+  {kind === 'flower' && <g stroke="#453b49" stroke-width="2.5" stroke-linejoin="round">
+    <path d="M80 48C53 4 21 32 43 64C-9 58-8 105 43 101C14 140 56 162 80 120C101 164 146 139 117 103C169 109 173 61 120 64C145 23 102 6 80 48Z" fill="#fbf8ef" stroke="#fbf8ef" stroke-width="12"/>
+    <path d="M80 48C53 4 21 32 43 64C-9 58-8 105 43 101C14 140 56 162 80 120C101 164 146 139 117 103C169 109 173 61 120 64C145 23 102 6 80 48Z" fill="#d7b5f0"/>
+    <circle cx="80" cy="83" r="28" fill="#fff28a"/><path d="M68 79v6m24-6v6m-19 11q7 7 14 0" stroke-linecap="round"/>
+  </g>}
+  {kind === 'thread' && <g stroke="#453b49" stroke-width="2.5" stroke-linejoin="round">
+    <path d="M49 34H109V117H49Z" fill="#fff28a" stroke="#fbf8ef" stroke-width="14"/>
+    <path d="M49 34H109V117H49Z" fill="#fff28a"/>
+    <path d="M50 48l58-10M50 62l58-10M50 76l58-10M50 90l58-10M50 104l58-10M50 116l58-10"/>
+    <ellipse cx="79" cy="32" rx="40" ry="13" fill="#f2a6bd"/><ellipse cx="79" cy="120" rx="40" ry="13" fill="#f2a6bd"/>
+    <ellipse cx="79" cy="30" rx="11" ry="4" fill="#453b49"/><path d="M112 91c51-5 44 54 6 45" stroke-linecap="round"/>
+  </g>}
+  {kind === 'heart' && <g stroke="#453b49" stroke-width="2.5" stroke-linejoin="round">
+    <path d="M80 137S11 97 13 55C16 9 64 12 80 44C96 12 146 9 148 55C151 98 80 137 80 137Z" fill="#f49be4" stroke="#fbf8ef" stroke-width="12"/>
+    <path d="M80 137S11 97 13 55C16 9 64 12 80 44C96 12 146 9 148 55C151 98 80 137 80 137Z" fill="#f49be4"/>
+    <path d="M36 58l11 8m8 8l11 8m8 8l11 8m8 8l11 8M54 55l-8 13m29 6l-9 13m29 6l-8 13" stroke-linecap="round"/>
+  </g>}
+  {kind === 'scissors' && <g stroke="#453b49" stroke-width="3" stroke-linejoin="round">
+    <path d="M59 105L99 20L88 108L43 21L59 105Z" fill="#fbf8ef" stroke="#fbf8ef" stroke-width="14"/>
+    <path d="M59 105L99 20L88 108L43 21L59 105Z" fill="#d7b5f0"/>
+    <ellipse cx="47" cy="121" rx="24" ry="18" transform="rotate(-22 47 121)" fill="#a5d9e8"/><ellipse cx="102" cy="121" rx="24" ry="18" transform="rotate(22 102 121)" fill="#a5d9e8"/>
+    <ellipse cx="47" cy="121" rx="13" ry="8" transform="rotate(-22 47 121)" fill="#fbf8ef"/><ellipse cx="102" cy="121" rx="13" ry="8" transform="rotate(22 102 121)" fill="#fbf8ef"/><circle cx="73" cy="94" r="6" fill="#fff28a"/>
+  </g>}
+</svg>

@@ -3,3 +3,7 @@ dist/
 .astro/
 .sites-runtime/
 *.log
+
+.taste-skill/
+assets/
+.codebase-memory/
